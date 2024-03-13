@@ -17,12 +17,15 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: hello-artifact
-        path: hello.txt
+        path: artifacts/hello.txt   # Adjusted path to include "artifacts" folder
 
   download:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Create artifacts directory
+        run: mkdir -p ./artifacts   # Create the "artifacts" directory if it doesn't exist
+
       - name: download text file
         uses: actions/download-artifact@v2
         with:
